@@ -11,8 +11,6 @@ A farmer speaks an expense, a sale or a harvest in Hindi. The app turns it into 
 
 ## Try it
 
-**Live link:** https://urvashikashyap16.github.io/farm-diary/
-
 **Run on your computer (no install):**
 
 ```bash
