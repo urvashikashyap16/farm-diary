@@ -1,0 +1,12 @@
+{
+  "name": "farm-diary",
+  "version": "0.1.0",
+  "description": "Clickable prototype of Farm Diary: offline voice-based record keeping for small farmers",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "test": "node --test tests/parser.test.js"
+  },
+  "engines": { "node": ">=18" }
+}

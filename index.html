@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Farm Diary – clickable prototype</title>
+<meta name="description" content="Farm Diary: offline voice-based record keeping for small farmers. Clickable prototype for the SEVA First Innovation Challenge 2026.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+
+<aside class="panel">
+  <h1>Farm Diary – prototype</h1>
+  <p class="sub">Clickable demo for the SEVA First video. Software only; the real app runs offline speech on the phone.</p>
+  <h2>Video flow (≈ 2 min of screen time)</h2>
+  <ol class="steps">
+    <li>Switch the phone to <b>No internet</b> (top bar)</li>
+    <li>Tap the mic, say or pick a phrase</li>
+    <li>Check the entry, tap <b>Yes, save</b></li>
+    <li>Add a sale and a harvest the same way</li>
+    <li>Open <b>Summary</b>, tap <b>Read aloud</b></li>
+    <li>Switch internet on: saved entries <b>sync</b></li>
+  </ol>
+  <h2>Phrases to try (tap to speak them)</h2>
+  <div class="chips" id="phraseChips"></div>
+  <button class="mini" id="realMic">Try my real microphone (Hindi, needs Chrome + internet)</button>
+  <button class="mini" id="reset">Reset sample data</button>
+  <p class="note">Demo notes: the phone here uses typed or tapped phrases and your browser's voice for read-aloud. Sample entries are illustrative, not field data. In the app, speech recognition (Vosk) and the parser run fully on the phone.</p>
+</aside>
+
+<div class="phone"><div class="screen" id="screen">
+  <div class="status"><span id="clock">9:41</span>
+    <button class="net" id="net" title="Toggle internet"><span id="netIcon">●</span><span id="netTxt">Online</span></button></div>
+  <div class="appbar"><span>Farm Diary</span><small id="barSub">Kharif 2026</small></div>
+
+  <div class="body">
+    <!-- HOME -->
+    <section class="view on" id="v-home">
+      <div class="micwrap">
+        <button class="mic" id="mic" aria-label="Tap and speak"><svg viewBox="0 0 24 24"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11z"/></svg></button>
+        <div class="say">Tap and speak</div>
+        <div class="hint">बोलिए · e.g. “Aaj beej par 1200 rupaye lage”</div>
+      </div>
+      <div class="sec-h"><span>Latest entries</span><span id="queueTxt" style="color:var(--ad)"></span></div>
+      <div id="latest"></div>
+    </section>
+
+    <!-- LISTENING -->
+    <section class="view" id="v-listen">
+      <div class="micwrap"><button class="mic live" id="micLive"><svg viewBox="0 0 24 24"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11z"/></svg></button>
+        <div class="say" id="listenTxt">Listening…</div></div>
+      <div class="hear" id="heard">…</div>
+      <div class="sec-h" style="margin-top:14px"><span>Try saying</span></div>
+      <div class="qchips" id="listenChips"></div>
+      <button class="big ghost" id="cancelListen">Cancel</button>
+    </section>
+
+    <!-- CONFIRM -->
+    <section class="view" id="v-confirm">
+      <div class="sec-h"><span>Check entry</span><span id="confBadge"></span></div>
+      <div class="hear" style="margin-bottom:12px"><b id="heardConf"></b></div>
+      <div class="card"><h3 id="cType">Expense</h3><div id="cRows"></div></div>
+      <div class="caption" id="warn"></div>
+      <button class="big pri" id="yes">Yes, save</button>
+      <button class="big sec" id="again">Say again</button>
+    </section>
+
+    <!-- DIARY -->
+    <section class="view" id="v-diary">
+      <div class="sec-h"><span>My diary</span><span id="diaryCount"></span></div>
+      <div id="all"></div>
+    </section>
+
+    <!-- SUMMARY -->
+    <section class="view" id="v-sum">
+      <div class="sum-big"><div class="l">Profit this year (sales − expenses)</div><div class="n" id="profit">₹0</div></div>
+      <svg id="chart" viewBox="0 0 320 190" width="100%"></svg>
+      <div class="legend"><span><i style="background:var(--gm)"></i>Sales</span><span><i style="background:var(--red)"></i>Expenses</span></div>
+      <div class="card" style="margin-top:12px"><h3>Crop-wise profit</h3><div id="cropRows"></div></div>
+      <button class="big pri" id="read">🔊 Read aloud</button>
+      <div class="caption" id="cap"></div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <nav class="nav" id="nav">
+    <button data-go="home" class="on"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 3 11h2v9h5v-6h4v6h5v-9h2z"/></svg>Home</button>
+    <button data-go="diary"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 3h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6V3zm2 4v2h8V7H8zm0 4v2h8v-2H8z"/></svg>Diary</button>
+    <button data-go="sum"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 20V10h4v10H4zm6 0V4h4v16h-4zm6 0v-7h4v7h-4z"/></svg>Summary</button>
+  </nav>
+</div></div>
+<script src="js/parser.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

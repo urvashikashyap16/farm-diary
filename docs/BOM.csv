@@ -1,0 +1,11 @@
+No,Item,Purpose,Qty,Unit cost (INR),Total (INR)
+1,Low-end Android test phone (about 3 GB RAM),Test offline speech on typical farmer hardware,1,8000,8000
+2,Google Play developer account (one-time US$25),Publish the pilot app,1,2200,2200
+3,Cloud backend reserve (free tier first),Sync and backup for the pilot,1,3000,3000
+4,Pilot travel and printing,Visits to pilot farmers; usability tests,1,3000,3000
+5,Mobile data for development and testing (about 3 months),Development and testing,1,1500,1500
+6,Farmer-tester refreshments and thank-you tokens,Pilot with 15-20 farmers,1,2000,2000
+7,Demo video kit (tripod and clip-on mic),Five-minute pitch video,1,1000,1000
+,Subtotal,,,,20700
+,Contingency (10%),,,,2070
+,Total prototype cost,,,,22770
